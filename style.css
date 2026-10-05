@@ -27,7 +27,7 @@ body {
     background-size: cover; 
 }
 
-/* Navbar */
+/* --- NAVBAR --- */
 .navbar {
     width: 100%;
     margin: 0;
@@ -188,6 +188,7 @@ body {
     cursor: pointer;
 }
 
+/* --- RESPONSIVENESS --- */
 @media (max-width: 1024px) {
     .nav-links {
         display: none;
@@ -221,6 +222,7 @@ body {
     }
 }
 
+/* --- MAIN CONTENT & GRID --- */
 .main-content {
     padding-bottom: 20px;
 }
@@ -241,88 +243,106 @@ body {
     margin: 20px 0 30px 30px;
 }
 
+/* --- NEW POSTER CARD STYLES --- */
 .cards {
     position: relative;
-    width: 230px; 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    background: rgba(15, 15, 15, 0.75);
-    backdrop-filter: blur(6px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 22px;
+    width: 230px;
+    height: 350px; /* Forces a standard poster ratio */
+    border-radius: 14px;
     overflow: hidden;
-    padding: 0 0 16px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.45);
-    transition: transform 0.2s ease, height 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.cards::after {
+    /* Adds a subtle dark shadow at the bottom so the white icons always pop */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .cards .card-image {
     width: 100%;
-    height: 320px;
+    height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 22px 22px 0 0;
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+    transition: transform 0.4s ease;
 }
 
 .cards:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
 
-.details {
+.cards:hover .card-image {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* --- BADGES --- */
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(15, 15, 15, 0.85);
+    padding: 5px 10px;
+    border-radius: 20px; /* Pill shape */
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 8px;
-    padding: 12px 12px 0;
-    width: 100%;
-}
-
-.details p {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-.details p b {
-    color: var(--text-main);
-}
-
-/* --- Read More / Read Less Styles --- */
-.desc-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 2px;
-}
-
-.desc-text.expanded {
-    -webkit-line-clamp: unset; 
-    display: block;
-}
-
-.read-more-btn {
-    background: none;
-    border: none;
-    color: var(--accent-green);
-    font-size: 0.75rem;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
     font-weight: 700;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 2px;
-    text-align: left;
-    transition: color 0.2s ease;
-    outline: none;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.05);
+    z-index: 2;
 }
 
-.read-more-btn:hover {
-    color: var(--accent-green-hover);
-    text-decoration: underline;
+.rating-badge i {
+    color: #FFB800; /* Gold Star */
+    font-size: 0.9rem;
 }
 
+.stats-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(15, 15, 15, 0.9);
+    padding: 6px 10px;
+    border-radius: 6px; /* Slightly rounded rectangle */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.05);
+    z-index: 2;
+}
+
+.stats-badge i {
+    color: #FFFFFF;
+    font-size: 0.75rem;
+}
+
+.stats-badge .divider {
+    color: #666;
+    font-weight: 400;
+    margin: 0 2px;
+}
+
+/* Specific colors for the numbers like in the screenshot */
+.stats-badge .stat-sub { color: #38bdf8; } /* Light Blue */
+.stats-badge .stat-dub { color: #fb923c; } /* Orange */
+.stats-badge .stat-eps { color: #38bdf8; } /* Light Blue */
+
+
+/* --- FOOTER --- */
 .footer {
     background: rgba(10, 10, 10, 0.95);
     border-top: 1px solid rgba(184, 134, 11, 0.2);
@@ -396,6 +416,7 @@ body {
     color: var(--text-muted);
 }
 
+/* --- DROPDOWN --- */
 .dropdown {
   position: relative;
   text-decoration: none;
