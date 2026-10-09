@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+  <title>My Library | Frame</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mylibrary.css">
+</head>
+<body>
+  <header class="site-header">
+     <div class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+                    <span>Frame</span>
+                </div>
+                <ul class="nav-links">
+                    <li class="active"><a href="../index.html">Overview</a></li>
+                    <li><a href="mylibrary.html">My Library</a></li>
+                    <li><a href="mylibrary.html?section=Watched">Watched</a></li>
+                    <li><a href="#">Collections</a></li>
+                </ul>
+                <li class="dropdown">
+                    <button type="button" class="dropbtn" aria-expanded="false" aria-haspopup="true">
+                        Browse <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-content">
+                        <li><a href="#">WEB</a></li>
+                        <li><a href="#">NEW</a></li>
+                        <li><a href="#">PAGE</a></li>
+                    </ul>
+                </li>
+            </div>
+            
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="library-search" placeholder="Search your library" aria-label="Search titles">
+                </div>
+                <button class="add-title-btn" id="library-search-submit" type="button">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+                <div class="user-profile">
+                    <!-- Added a label around the image linked to the hidden file input so the JS avatar logic works -->
+                    <label for="avatarInput" style="cursor: pointer; margin: 0; padding: 0;">
+                        <img src="images/DP.jpg" onerror="this.src='https://placehold.co/36x36/111/fff?text=ZS'" alt="Zaki Sultan" class="avatar" id="navAvatar">
+                    </label>
+                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                    
+                    <div class="user-info">
+                        <span class="user-name">Zaki Sultan</span>
+                        <span class="user-plan">Creator</span>
+                    </div>
+                    <i class="fa-solid fa-ellipsis hover-icon"></i>
+                </div>
+            </div>
+        </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-heading" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">My Library</h1>
+        <p class="count" id="item-count" aria-live="polite"></p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter library by category">
+        <button class="filter-button" type="button" data-category="All" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-category="Movies" aria-pressed="false">Movies</button>
+        <button class="filter-button" type="button" data-category="TV Shows" aria-pressed="false">TV Shows</button>
+        <button class="filter-button" type="button" data-category="Anime" aria-pressed="false">Anime</button>
+        <button class="filter-button" type="button" data-category="Watched" aria-pressed="false">Watched</button>
+      </div>
+    </section>
+
+    <div class="watched-filters" role="group" aria-label="Filter watched titles" hidden>
+      <button class="filter-button" type="button" data-watched-filter="All" aria-pressed="true">All Watched</button>
+      <button class="filter-button" type="button" data-watched-filter="Favorites" aria-pressed="false">Favorites</button>
+    </div>
+
+    <section class="library-grid" id="library-grid" aria-label="Media in your library"></section>
+    <section class="empty-state" id="empty-state" hidden>
+      <h2>No media found</h2>
+      <p>There are no items matching your current filters or search. Try adjusting them or clear your filters.</p>
+      <button class="clear-button" id="clear-filters" type="button">Clear Filters</button>
+    </section>
+  </main>
+  <script src="../library-store.js" defer></script>
+  <script src="mylibrary.js" defer></script>
+</body>
+</html>

@@ -239,31 +239,34 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: flex-start;
-    gap: 15px;
+    gap: 24px 22px;
     margin: 20px 0 30px 30px;
 }
 
-/* --- NEW POSTER CARD STYLES --- */
+.media-card {
+    width: 220px;
+    min-width: 0;
+}
+
 .cards {
     position: relative;
-    width: 230px;
-    height: 350px; /* Forces a standard poster ratio */
+    width: 100%;
+    aspect-ratio: 2 / 3;
     border-radius: 14px;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .cards::after {
-    /* Adds a subtle dark shadow at the bottom so the white icons always pop */
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40%;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    height: 30%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.42), transparent);
     pointer-events: none;
     z-index: 1;
 }
@@ -276,70 +279,135 @@ body {
     transition: transform 0.4s ease;
 }
 
-.cards:hover {
-    transform: translateY(-8px);
+.media-card:hover .cards {
+    transform: translateY(-4px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-.cards:hover .card-image {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+.media-card:hover .card-image {
+    transform: scale(1.04);
 }
 
-/* --- BADGES --- */
-.rating-badge {
+.category-badge {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(15, 15, 15, 0.85);
-    padding: 5px 10px;
-    border-radius: 20px; /* Pill shape */
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.05);
-    z-index: 2;
-}
-
-.rating-badge i {
-    color: #FFB800; /* Gold Star */
-    font-size: 0.9rem;
-}
-
-.stats-badge {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(15, 15, 15, 0.9);
     padding: 6px 10px;
-    border-radius: 6px; /* Slightly rounded rectangle */
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #fff;
+    background: rgba(8, 9, 13, 0.82);
+    font-size: 0.7rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
     z-index: 2;
 }
 
-.stats-badge i {
-    color: #FFFFFF;
-    font-size: 0.75rem;
+.card-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-.stats-badge .divider {
-    color: #666;
-    font-weight: 400;
+.card-menu {
+    position: absolute;
+    top: 58px;
+    right: 10px;
+    z-index: 3;
+    min-width: 132px;
+    padding: 5px;
+    border: 1px solid rgba(184, 134, 11, 0.35);
+    border-radius: 8px;
+    background: rgba(12, 11, 9, 0.97);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+}
+
+.card-menu[hidden] {
+    display: none;
+}
+
+.card-menu-item {
+    display: block;
+    width: 100%;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 5px;
+    color: #e2e8f0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.82rem;
+    text-align: left;
+}
+
+.card-menu-item:hover,
+.card-menu-item:focus-visible {
+    outline: none;
+    color: #d4af37;
+    background: rgba(184, 134, 11, 0.14);
+}
+
+.media-card:hover .card-actions,
+.media-card:focus-within .card-actions {
+    opacity: 1;
+}
+
+.card-action {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(8, 9, 13, 0.88);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.card-action:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(30, 35, 52, 0.95);
+}
+
+.favorite-button[aria-pressed="true"] {
+    border-color: rgba(239, 68, 68, 0.6);
+    color: #fb7185;
+}
+
+.options-button[aria-expanded="true"] {
+    border-color: rgba(184, 134, 11, 0.6);
+    color: #d4af37;
+}
+
+.options-button:hover {
+    border-color: rgba(184, 134, 11, 0.6);
+    color: #d4af37;
+}
+
+.card-title {
+    overflow: hidden;
+    margin: 11px 2px 5px;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-year {
     margin: 0 2px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
-
-/* Specific colors for the numbers like in the screenshot */
-.stats-badge .stat-sub { color: #38bdf8; } /* Light Blue */
-.stats-badge .stat-dub { color: #fb923c; } /* Orange */
-.stats-badge .stat-eps { color: #38bdf8; } /* Light Blue */
 
 
 /* --- FOOTER --- */

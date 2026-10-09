@@ -23,8 +23,8 @@
                 </div>
                 <ul class="nav-links">
                     <li class="active"><a href="#">Overview</a></li>
-                    <li><a href="pages/mylibrary.html">My Library</a></li>
-                    <li><a href="#">Watched</a></li>
+                    <li><a href="MyLIbrary/mylibrary.html">My Library</a></li>
+                    <li><a href="MyLIbrary/mylibrary.html?section=Watched">Watched</a></li>
                     <li><a href="#">Collections</a></li>
                 </ul>
                 <li class="dropdown">
@@ -42,9 +42,9 @@
             <div class="nav-right">
                 <div class="search-bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search your library">
+                    <input type="search" id="main-search" placeholder="Search your library" aria-label="Search titles">
                 </div>
-                <button class="add-title-btn">
+                <button class="add-title-btn" id="main-search-submit" type="button">
                     <i class="fa-solid fa-magnifying-glass"></i> Search
                 </button>
                 <div class="user-profile">
@@ -126,6 +126,7 @@
     </footer>
 
     <!-- Link to external JS file -->
+    <script src="library-store.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
