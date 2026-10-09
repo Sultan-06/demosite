@@ -274,9 +274,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderMovies();
     searchInput?.addEventListener('input', renderMovies);
-    searchButton?.addEventListener('click', renderMovies);
+    const openDiscoverSearch = () => {
+        const query = searchInput?.value.trim();
+        if (query) {
+            window.location.href = `discover.html?search_field=name&search_value=${encodeURIComponent(query)}`;
+        } else {
+            renderMovies();
+        }
+    };
+    searchButton?.addEventListener('click', openDiscoverSearch);
     searchInput?.addEventListener('keydown', event => {
-        if (event.key === 'Enter') renderMovies();
+        if (event.key === 'Enter') openDiscoverSearch();
     });
 
     document.addEventListener('click', event => {
